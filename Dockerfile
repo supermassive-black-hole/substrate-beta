@@ -1,4 +1,4 @@
-FROM substrate-alpha:1
+FROM smbh/substrate-alpha:1.0.0
 
 ADD run.sh /app/run.sh
 ADD certbot-cron /etc/cron.d/certbot-cron
