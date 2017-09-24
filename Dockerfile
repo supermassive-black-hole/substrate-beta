@@ -6,4 +6,6 @@ ADD certbot-renew.sh /etc/cron.d/certbot-renew.sh
 ADD nginx.conf /etc/nginx/nginx.conf
 ADD circus.ini /app/circus.ini
 
+RUN pip install awscli
+
 CMD ["/app/run.sh"]
