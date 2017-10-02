@@ -36,6 +36,12 @@ server {
 }
 EOF
 
+  if [ -z ${NGINX_IP_WHITELIST} ] then
+    NGINX_ALLOW=""
+  else
+    NGINX_ALLOW="${NGINX_IP_WHITELIST} deny all;"
+  fi
+
   cat >/etc/nginx/sites-available/secure.conf <<EOF
 server {
    listen 443 ssl;
@@ -48,6 +54,7 @@ server {
        proxy_pass http://localhost:8080;
        proxy_set_header Host      \$host;
        proxy_set_header X-Real-IP \$remote_addr;
+       ${NGINX_ALLOW}
    }
 }
 EOF
