@@ -36,7 +36,7 @@ server {
 }
 EOF
 
-  if [ -z ${NGINX_IP_WHITELIST} ] then
+  if [ -z ${NGINX_IP_WHITELIST} ]; then
     NGINX_ALLOW=""
   else
     NGINX_ALLOW="${NGINX_IP_WHITELIST} deny all;"
