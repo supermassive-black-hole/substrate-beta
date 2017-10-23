@@ -73,8 +73,12 @@ EOF
 
   set +e
 
+  if [ -z ${CERTBOT_EMAIL} ]; then
+    CERTBOT_EMAIL=admin@${MACHINE_NAME}
+  fi
+
   echo "Creating or renewing ssl certificates if necessary"
-  certbot certonly --no-eff-email -n -a standalone --agree-tos --email admin@${MACHINE_NAME} -d ${MACHINE_NAME} --keep
+  certbot certonly --no-eff-email -n -a standalone --agree-tos --email ${CERTBOT_EMAIL} -d ${MACHINE_NAME} --keep
 fi
 
 set -e
