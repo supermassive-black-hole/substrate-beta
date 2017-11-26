@@ -78,7 +78,14 @@ EOF
   fi
 
   echo "Creating or renewing ssl certificates if necessary"
-  certbot certonly --no-eff-email -n -a standalone --agree-tos --email ${CERTBOT_EMAIL} -d ${MACHINE_NAME} --keep
+
+  if [ -z ${CERTBOT_ROUTE53} ]; then
+    echo "Acquiring certificates with standard challenge."
+    certbot certonly --no-eff-email -n -a standalone --agree-tos --email ${CERTBOT_EMAIL} -d ${MACHINE_NAME} --keep
+  else
+    echo "Acquiring certificates with dns-01 / route53 challenge."
+    certbot certonly --no-eff-email -n --agree-tos --email ${CERTBOT_EMAIL} --dns-route53 -d ${MACHINE_NAME} --keep
+  fi
 fi
 
 set -e
