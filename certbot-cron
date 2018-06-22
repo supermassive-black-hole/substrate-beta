@@ -1,1 +1,1 @@
-47 2 * * 7 root /app/certbot-renew.sh > /dev/stdout
+47 2 * * 7 root /app/certbot-renew.sh >/proc/1/fd/1 2>&1
